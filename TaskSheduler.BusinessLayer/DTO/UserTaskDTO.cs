@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskSheduler.BusinessLayer.DTO
 {
-    class UserTaskDTO
+    public class UserTaskDTO
     {
         public int Id { get; set; }
         public string NameOfTask { get; set; }
