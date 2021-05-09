@@ -36,6 +36,9 @@
     <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="SimpleInjector, Version=5.0.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.5.3.0\lib\net461\SimpleInjector.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -87,6 +90,10 @@
     <ProjectReference Include="..\TaskSheduler.BusinessLayer\TaskSheduler.BusinessLayer.csproj">
       <Project>{ebe9f158-415c-4f22-8f9f-5aec5c8632f9}</Project>
       <Name>TaskSheduler.BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskSheduler.DataAccess\TaskSheduler.DataAccess.csproj">
+      <Project>{357ECD2B-1BD5-4556-A1D2-DF0FD93DB46B}</Project>
+      <Name>TaskSheduler.DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

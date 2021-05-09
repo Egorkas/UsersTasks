@@ -14,7 +14,8 @@ namespace TaskSheduler.BusinessLayer.Mapping
         public UserTaskMapperProfile()
         {
             CreateMap<UserTask, UserTaskDTO>()
-                .ForMember(dst => dst.Status, opts => opts.MapFrom(src => src.Status.ToString()));
+                .ForMember(dst => dst.Status, opts => opts.MapFrom(src => src.Status.ToString()))
+                .ReverseMap();
         }
     }
 }

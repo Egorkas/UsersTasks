@@ -15,8 +15,8 @@ namespace TaskSheduler.BusinessLayer.Mapping
         {
             CreateMap<User, UserDTO>()
             .ForMember(dst => dst.Name, opts => opts.MapFrom(src => src.FirstName + " " + src.LastName))
-            .ForMember(dst => dst.Rule, opts => opts.MapFrom(src => src.Rule.ToString()));
-                //.ReverseMap()
+            .ForMember(dst => dst.Rule, opts => opts.MapFrom(src => src.Rule.ToString()))
+            .ReverseMap();
                 //.ForMember(dst => dst.)
         }
     }

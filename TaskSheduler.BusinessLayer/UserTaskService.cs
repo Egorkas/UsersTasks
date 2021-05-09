@@ -11,7 +11,7 @@ using TaskSheduler.DataAccess.Entities;
 
 namespace TaskSheduler.BusinessLayer
 {
-    class UserTaskService : IGenericServices<UserTaskDTO>
+    public class UserTaskService : IGenericServices<UserTaskDTO>
     {
         private readonly IGenericRepository<UserTask> _userTaskRepo;
         private readonly IMapper _mapper;

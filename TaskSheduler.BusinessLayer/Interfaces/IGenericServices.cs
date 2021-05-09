@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskSheduler.BusinessLayer.Interfaces
 {
-    interface IGenericServices<TService> where TService : class
+    public interface IGenericServices<TService> where TService : class
     {
         void Create(TService item);
         TService FindById(int id);
