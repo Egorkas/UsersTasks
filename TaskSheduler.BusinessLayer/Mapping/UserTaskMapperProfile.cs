@@ -9,7 +9,7 @@ using TaskSheduler.DataAccess.Entities;
 
 namespace TaskSheduler.BusinessLayer.Mapping
 {
-    class UserTaskMapperProfile : Profile
+    public class UserTaskMapperProfile : Profile
     {
         public UserTaskMapperProfile()
         {

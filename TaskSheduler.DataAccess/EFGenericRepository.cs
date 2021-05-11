@@ -21,6 +21,7 @@ namespace TaskSheduler.DataAccess
         public void Create(TEntity item)
         {
             _dbSet.Add(item);
+            _context.SaveChanges();
         }
 
         public TEntity FindById(int id)
@@ -41,11 +42,13 @@ namespace TaskSheduler.DataAccess
         public void Remove(TEntity item)
         {
             _dbSet.Remove(item);
+            _context.SaveChanges();
         }
 
         public void Update(TEntity item)
         {
             _context.Entry(item).State = EntityState.Modified;
+            _context.SaveChanges();
         }
 
         public void Save()

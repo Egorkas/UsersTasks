@@ -31,6 +31,7 @@ namespace UsersTasks
         {
             this.usersDgv = new System.Windows.Forms.DataGridView();
             this.userTasksDgv = new System.Windows.Forms.DataGridView();
+            this.addUser_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.usersDgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userTasksDgv)).BeginInit();
             this.SuspendLayout();
@@ -51,11 +52,22 @@ namespace UsersTasks
             this.userTasksDgv.Size = new System.Drawing.Size(469, 309);
             this.userTasksDgv.TabIndex = 1;
             // 
+            // addUser_btn
+            // 
+            this.addUser_btn.Location = new System.Drawing.Point(12, 363);
+            this.addUser_btn.Name = "addUser_btn";
+            this.addUser_btn.Size = new System.Drawing.Size(75, 23);
+            this.addUser_btn.TabIndex = 2;
+            this.addUser_btn.Text = "AddUser";
+            this.addUser_btn.UseVisualStyleBackColor = true;
+            this.addUser_btn.Click += new System.EventHandler(this.addUser_btn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1040, 519);
+            this.Controls.Add(this.addUser_btn);
             this.Controls.Add(this.userTasksDgv);
             this.Controls.Add(this.usersDgv);
             this.Name = "Form1";
@@ -70,6 +82,7 @@ namespace UsersTasks
 
         private System.Windows.Forms.DataGridView usersDgv;
         private System.Windows.Forms.DataGridView userTasksDgv;
+        private System.Windows.Forms.Button addUser_btn;
     }
 }
 

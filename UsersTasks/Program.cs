@@ -1,4 +1,5 @@
-﻿using SimpleInjector;
+﻿using AutoMapper;
+using SimpleInjector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,10 @@ using TaskSheduler.BusinessLayer;
 using TaskSheduler.BusinessLayer.DTO;
 using TaskSheduler.BusinessLayer.Interfaces;
 using TaskSheduler.DataAccess;
+using TaskSheduler.DataAccess.EFDb;
 using TaskSheduler.DataAccess.Entities;
+using TaskSheduler.BusinessLayer.Mapping;
+
 
 namespace UsersTasks
 {
@@ -22,19 +26,32 @@ namespace UsersTasks
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            var container = CreateContainer();
+            Application.Run(container.GetInstance<Form1>());
         }
 
-        //private static Container CreateContainer()
-        //{
-        //    var container = new Container();
-        //    container.Register<IGenericServices<UserDTO>, UserService>(Lifestyle.Singleton);
-        //    container.Register<IGenericServices<UserTaskDTO>, UserTaskService>(Lifestyle.Singleton);
-        //    container.Register<IGenericRepository<User>, EFGenericRepository<User>(Lifestyle.Singleton);
+        private static Container CreateContainer()
+        {
+            var container = new Container();
+            container.Register<IGenericServices<UserDTO>, UserService>(Lifestyle.Singleton);
+            container.Register<IGenericServices<UserTaskDTO>, UserTaskService>(Lifestyle.Singleton);
+            container.Register<IGenericRepository<User>, EFGenericRepository<User>>(Lifestyle.Singleton);
+            container.Register<IGenericRepository<UserTask>, EFGenericRepository<UserTask>>(Lifestyle.Singleton);
+            container.Register<IMapper>(() => CreateMapper(), Lifestyle.Singleton);
+            container.Register<UserContext>(Lifestyle.Singleton);
+            container.Register<Form1>(Lifestyle.Singleton);
+            container.Verify();
 
-        //    container.Verify();
+            return container;
+        }
 
-        //    return container;
-        //}
+        private static IMapper CreateMapper()
+        {
+            var config = new MapperConfiguration(cfg => cfg.AddMaps("TaskSheduler.BusinessLayer"));
+            var mapper = config.CreateMapper();
+
+            return mapper;
+        }
     }
 }
