@@ -22,8 +22,8 @@ namespace TaskSheduler.BusinessLayer
             _mapper = mapper;
         }
 
-        public async Task<List<UserTaskDTO>> GetAll(int id)
-            => _mapper.Map<List<UserTaskDTO>>(await _userTaskRepo.GetByUserId(id));
+        //public async Task<List<UserTaskDTO>> GetAll(int id)
+        //    => _mapper.Map<List<UserTaskDTO>>(await _userTaskRepo.GetByUserId(id));
 
         public void Create(UserTaskDTO item)
             => _userTaskRepo.Create(_mapper.Map<UserTask>(item));

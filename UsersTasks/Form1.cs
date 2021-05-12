@@ -18,6 +18,7 @@ namespace UsersTasks
         private const string TaskCompleteMessage = "Задача успешно добавлена!";
         private const string NewUserAddedMessage = "Новый пользователь добавлен!";
         private const string UserChangedMessage = "Пользователь изменён!";
+        private const string UserTaskChangedMessage = "Задача изменена!";
         private const string ErrorWhileAddedUserMessage = "Произошла ошибка при добавлении пользователя!";
         private const string EmptyTextboxMessage = "Поле ввода имени пользователя не должно быть пустым!";
         private const string OneObjectDeletedMessage = "Объект удален!";
@@ -34,13 +35,20 @@ namespace UsersTasks
             _userService = userService;
             _userTaskService = userTaskService;
 
-            GetUsers();           
+            GetUsers();
+            GetTasks();
         }
 
         private void GetUsers()
         {
             var users = _userService.GetAll();
             usersDgv.DataSource = users;
+        }
+
+        private void GetTasks()
+        {
+            var tasks = _userTaskService.GetAll();
+            userTasksDgv.DataSource = tasks;
         }
         private void addUser_btn_Click(object sender, EventArgs e)
         {
@@ -171,8 +179,7 @@ namespace UsersTasks
             var AddNewTask_Form = new UserTasks();
 
             if (AddNewTask_Form.ShowDialog(this) == DialogResult.Cancel)
-                return;
-            else
+            
             {
                 var taskName = AddNewTask_Form.inputNameOfTasktextBox.Text;
                 var taskDescription = AddNewTask_Form.inputDescriptionOfTasktextBox.Text;
@@ -197,17 +204,101 @@ namespace UsersTasks
                     _userTaskService.Create(taskUser);
                     MessageBox.Show(TaskCompleteMessage);
                 }
-                userTasksDgv.DataSource = _userTaskService.GetAll(GetUserSelectedRowsIds().First());
+                GetTasks();
             }
+            else if (AddNewTask_Form.ShowDialog(this) == DialogResult.OK)
+                return;
         }
         private void changeTask_btn_Click(object sender, EventArgs e)
         {
+            if (userTasksDgv.SelectedRows.Count > 0)
+            {
+                var lastCursor = GetLastCursorIndex(userTasksDgv);
+                var selectedRows = GetTaskSelectedRowsIds();
 
+                var ChangeUserTaskData_Form = new UserTasks();
+
+                var userTask = _userTaskService.FindById(GetTaskSelectedRowsIds().First());
+                ChangeUserTaskData_Form.inputNameOfTasktextBox.Text = userTask.NameOfTask;
+                ChangeUserTaskData_Form.inputDescriptionOfTasktextBox.Text = userTask.Description;
+                ChangeUserTaskData_Form.startDtp.Value = userTask.StartOfTask;
+                ChangeUserTaskData_Form.deadLineDtp.Value = userTask.DeadLine;
+                ChangeUserTaskData_Form.statusTaskCmbBox.SelectedItem = userTask.Status;
+
+                if (ChangeUserTaskData_Form.ShowDialog(this) == DialogResult.OK)
+                    return;
+
+                var taskName = ChangeUserTaskData_Form.inputNameOfTasktextBox.Text;
+                var taskDescription = ChangeUserTaskData_Form.inputDescriptionOfTasktextBox.Text;
+                var startTime = ChangeUserTaskData_Form.startDtp.Value;
+                var endTime = ChangeUserTaskData_Form.deadLineDtp.Value;
+                var status = ChangeUserTaskData_Form.statusTaskCmbBox.SelectedItem.ToString();
+
+                if (!string.IsNullOrWhiteSpace(taskName)
+                    && !string.IsNullOrWhiteSpace(taskDescription))
+                {
+                    var newUserTask = new UserTaskDTO
+                    {
+                        NameOfTask = taskName
+                    ,
+                        Description = taskDescription
+                    ,
+                        StartOfTask = startTime
+                    ,
+                        DeadLine = endTime
+                    ,
+                        Status = status
+                    ,
+                        UserId = userTask.UserId
+                    };
+                    _userTaskService.Update(newUserTask);
+                    MessageBox.Show(UserTaskChangedMessage);
+                    _userTaskService.Remove(selectedRows.First());
+                    GetTasks();
+                }
+                else
+                {
+                    MessageBox.Show(EmptyTextboxMessage);
+                    return;
+                }
+            }
         }
 
         private void deleteTask_btn_Click(object sender, EventArgs e)
         {
 
+            if (userTasksDgv.SelectedRows.Count > 0)
+            {
+                var lastCursor = GetLastCursorIndex(userTasksDgv);
+                var selectedRows = GetTaskSelectedRowsIds();
+
+                foreach (var id in selectedRows)
+                    _userTaskService.Remove(id);
+
+                userTasksDgv.DataSource = _userTaskService.GetAll();
+                if (lastCursor > 0)
+                {
+                    userTasksDgv.CurrentCell = userTasksDgv.Rows[lastCursor - 1].Cells[0];
+                }
+            }               
         }
+
+        private List<int> GetTaskSelectedRowsIds()
+        {
+            if (userTasksDgv.SelectedRows.Count > 0)
+            {
+                var selectedRows = userTasksDgv.SelectedRows.OfType<DataGridViewRow>().ToArray();
+                var infoDatasource = (List<UserTaskDTO>)userTasksDgv.DataSource;
+
+                return selectedRows.Select(row => infoDatasource[row.Index].Id).ToList();
+            }
+
+            return null;
+        }
+        private void usersDgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+            => userTasksDgv.DataSource = _userTaskService.GetAll().Where(src => src.UserId == GetUserSelectedRowsIds().First());
+
+        private void usersDgv_CellContentClick(object sender, DataGridViewCellEventArgs e) 
+            => userTasksDgv.DataSource = _userTaskService.GetAll();
     }
 }

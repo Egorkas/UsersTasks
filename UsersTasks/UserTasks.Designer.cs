@@ -40,7 +40,7 @@ namespace UsersTasks
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.adding_Task_btn = new System.Windows.Forms.Button();
-            this.cansel_Task_btn = new System.Windows.Forms.Button();
+            this.canсel_Task_btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // inputNameOfTasktextBox
@@ -130,30 +130,32 @@ namespace UsersTasks
             // 
             // adding_Task_btn
             // 
-            this.adding_Task_btn.DialogResult = System.Windows.Forms.DialogResult.OK;
+            
             this.adding_Task_btn.Location = new System.Drawing.Point(60, 381);
+            this.adding_Task_btn.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.adding_Task_btn.Name = "adding_Task_btn";
             this.adding_Task_btn.Size = new System.Drawing.Size(75, 23);
             this.adding_Task_btn.TabIndex = 17;
             this.adding_Task_btn.Text = "Add";
             this.adding_Task_btn.UseVisualStyleBackColor = true;
             // 
-            // cansel_Task_btn
+            // canсel_Task_btn
             // 
+            
+            this.canсel_Task_btn.Location = new System.Drawing.Point(185, 381);
+            this.canсel_Task_btn.Name = "canсel_Task_btn";
+            this.canсel_Task_btn.Size = new System.Drawing.Size(75, 23);
+            this.canсel_Task_btn.TabIndex = 18;
+            this.canсel_Task_btn.Text = "Cancel";
+            this.canсel_Task_btn.UseVisualStyleBackColor = true;
             this.adding_Task_btn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cansel_Task_btn.Location = new System.Drawing.Point(185, 381);
-            this.cansel_Task_btn.Name = "cansel_Task_btn";
-            this.cansel_Task_btn.Size = new System.Drawing.Size(75, 23);
-            this.cansel_Task_btn.TabIndex = 18;
-            this.cansel_Task_btn.Text = "Cancel";
-            this.cansel_Task_btn.UseVisualStyleBackColor = true;
             // 
             // UserTasks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(316, 450);
-            this.Controls.Add(this.cansel_Task_btn);
+            this.Controls.Add(this.canсel_Task_btn);
             this.Controls.Add(this.adding_Task_btn);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -185,6 +187,6 @@ namespace UsersTasks
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button adding_Task_btn;
-        private System.Windows.Forms.Button cansel_Task_btn;
+        private System.Windows.Forms.Button canсel_Task_btn;
     }
 }
