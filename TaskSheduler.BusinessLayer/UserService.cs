@@ -36,8 +36,11 @@ namespace TaskSheduler.BusinessLayer
         public IEnumerable<UserDTO> GetAll()
             => _mapper.Map<IEnumerable<UserDTO>>(_userRepo.GetAll());
 
-        public void Remove(UserDTO item)
-            => _userRepo.Remove(_mapper.Map<User>(item));
+        //public void Remove(UserDTO item)
+        //    => _userRepo.Remove(_mapper.Map<User>(item));
+
+        public void Remove(int id)
+            => _userRepo.Remove(id);
 
         public void Update(UserDTO item)
             => _userRepo.Update(_mapper.Map<User>(item));

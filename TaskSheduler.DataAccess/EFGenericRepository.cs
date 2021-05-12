@@ -39,15 +39,16 @@ namespace TaskSheduler.DataAccess
             return _dbSet.AsNoTracking().ToList();
         }
 
-        public void Remove(TEntity item)
+        public void Remove(int id)
         {
+            var item = FindById(id);
             _dbSet.Remove(item);
             _context.SaveChanges();
         }
 
         public void Update(TEntity item)
         {
-            _context.Entry(item).State = EntityState.Modified;
+            _context.Entry(item).State = EntityState.Added;
             _context.SaveChanges();
         }
 

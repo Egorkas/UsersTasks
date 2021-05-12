@@ -22,6 +22,9 @@ namespace TaskSheduler.BusinessLayer
             _mapper = mapper;
         }
 
+        public async Task<List<UserTaskDTO>> GetAll(int id)
+            => _mapper.Map<List<UserTaskDTO>>(await _userTaskRepo.GetByUserId(id));
+
         public void Create(UserTaskDTO item)
             => _userTaskRepo.Create(_mapper.Map<UserTask>(item));
 
@@ -36,8 +39,10 @@ namespace TaskSheduler.BusinessLayer
         public IEnumerable<UserTaskDTO> GetAll()
             => _mapper.Map<IEnumerable<UserTaskDTO>>(_userTaskRepo.GetAll());
 
-        public void Remove(UserTaskDTO item)
-            => _userTaskRepo.Remove(_mapper.Map<UserTask>(item));
+        //public void Remove(UserTaskDTO item)
+        //    => _userTaskRepo.Remove(_mapper.Map<UserTask>(item));
+        public void Remove(int id)
+           => _userTaskRepo.Remove(id);
 
         public void Update(UserTaskDTO item)
             => _userTaskRepo.Update(_mapper.Map<UserTask>(item));

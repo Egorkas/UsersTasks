@@ -12,7 +12,8 @@ namespace TaskSheduler.BusinessLayer.Interfaces
         TService FindById(int id);
         IEnumerable<TService> GetAll();
         IEnumerable<TService> Get(Func<TService, bool> predicate);
-        void Remove(TService item);
+        //void Remove(TService item);
+        void Remove(int id);
         void Update(TService item);
     }
 }

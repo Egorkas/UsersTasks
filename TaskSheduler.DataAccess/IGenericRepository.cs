@@ -12,7 +12,8 @@ namespace TaskSheduler.DataAccess
         TEntity FindById(int id);
         IEnumerable<TEntity> GetAll();
         IEnumerable<TEntity> Get(Func<TEntity, bool> predicate);
-        void Remove(TEntity item);
+        //void Remove(TEntity item);
+        void Remove(int id);
         void Update(TEntity item);
     }
 }
