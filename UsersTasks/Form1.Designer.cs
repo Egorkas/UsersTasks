@@ -31,11 +31,6 @@ namespace UsersTasks
         {
             this.components = new System.ComponentModel.Container();
             this.usersDgv = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ruleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userTasksDgv = new System.Windows.Forms.DataGridView();
@@ -55,6 +50,11 @@ namespace UsersTasks
             this.changeTask_btn = new System.Windows.Forms.Button();
             this.deleteTask_btn = new System.Windows.Forms.Button();
             this.usersTasksDBDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ruleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.usersDgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
@@ -80,37 +80,7 @@ namespace UsersTasks
             this.usersDgv.Name = "usersDgv";
             this.usersDgv.Size = new System.Drawing.Size(445, 312);
             this.usersDgv.TabIndex = 0;
-            this.usersDgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.usersDgv_CellContentClick);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Age";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Age";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Email";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Email";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // ruleDataGridViewTextBoxColumn
-            // 
-            this.ruleDataGridViewTextBoxColumn.DataPropertyName = "Rule";
-            this.ruleDataGridViewTextBoxColumn.HeaderText = "Rule";
-            this.ruleDataGridViewTextBoxColumn.Name = "ruleDataGridViewTextBoxColumn";
+            this.usersDgv.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.usersDgv_RowHeaderMouseClick);
             // 
             // userDTOBindingSource
             // 
@@ -241,6 +211,36 @@ namespace UsersTasks
             this.deleteTask_btn.UseVisualStyleBackColor = true;
             this.deleteTask_btn.Click += new System.EventHandler(this.deleteTask_btn_Click);
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Age";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Age";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Email";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Email";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // ruleDataGridViewTextBoxColumn
+            // 
+            this.ruleDataGridViewTextBoxColumn.DataPropertyName = "Rule";
+            this.ruleDataGridViewTextBoxColumn.HeaderText = "Rule";
+            this.ruleDataGridViewTextBoxColumn.Name = "ruleDataGridViewTextBoxColumn";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -277,13 +277,9 @@ namespace UsersTasks
         private System.Windows.Forms.Button addTask_btn;
         private System.Windows.Forms.Button changeTask_btn;
         private System.Windows.Forms.Button deleteTask_btn;
-        //private UsersTasksDBDataSet usersTasksDBDataSet;
         private System.Windows.Forms.BindingSource usersBindingSource;
-        //private UsersTasksDBDataSetTableAdapters.UsersTableAdapter usersTableAdapter;
         private System.Windows.Forms.BindingSource usersTasksDBDataSetBindingSource;
-        //private UsersTasksDBDataSet1 usersTasksDBDataSet1;
         private System.Windows.Forms.BindingSource userTasksBindingSource;
-        //private UsersTasksDBDataSet1TableAdapters.UserTasksTableAdapter userTasksTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameOfTaskDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn startOfTaskDataGridViewTextBoxColumn;
@@ -293,11 +289,6 @@ namespace UsersTasks
         private System.Windows.Forms.DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ruleDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource userDTOBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -307,6 +298,11 @@ namespace UsersTasks
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn userIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource userTaskDTOBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ruleDataGridViewTextBoxColumn;
     }
 }
 

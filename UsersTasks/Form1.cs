@@ -295,10 +295,11 @@ namespace UsersTasks
 
             return null;
         }
-        private void usersDgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-            => userTasksDgv.DataSource = _userTaskService.GetAll().Where(src => src.UserId == GetUserSelectedRowsIds().First());
 
-        private void usersDgv_CellContentClick(object sender, DataGridViewCellEventArgs e) 
-            => userTasksDgv.DataSource = _userTaskService.GetAll();
+        private void usersDgv_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            var userTasks = _userTaskService.GetAll().Where(src => src.UserId == GetUserSelectedRowsIds().First()).ToList();
+            userTasksDgv.DataSource = userTasks;
+        }
     }
 }
